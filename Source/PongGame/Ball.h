@@ -26,8 +26,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "My Actor")
 		float Speed = 10.0;
-	
-	
 
 protected:
 	// Called when the game starts or when spawned
@@ -45,4 +43,6 @@ private:
 	FVector CurrentLocation;
 	bool XDirection = true;
 	bool YDirection = true;
+	int32 blueScore = 0;
+	int32 redScore = 0;
 };

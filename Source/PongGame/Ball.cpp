@@ -3,6 +3,9 @@
 
 #include "Ball.h"
 #include "PongGameGameModeBase.h"
+#include "MyPlayerController.h"
+#include "PongHUD.h"
+#include "Components/TextBlock.h"
 #include "Components/SceneComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/SphereComponent.h"
@@ -70,17 +73,23 @@ void ABall::OnActorOverlapBegin(AActor* OverlappedActor, AActor* OtherActor) {
 	if (OtherActor->GetName().Contains("BP_Blue")) {
 		GEngine->AddOnScreenDebugMessage(2, 10.f, FColor::Red, "Red Team scored!!");
 		CurrentLocation = SpawnLocation;
-		SetActorLocation(SpawnLocation);
 		XDirection = true;
 		YDirection = true;
+		redScore += 1;
+		SetActorLocation(SpawnLocation);
 	}
 	if (OtherActor->GetName().Contains("BP_Red")) {
 		GEngine->AddOnScreenDebugMessage(2, 10.f, FColor::Blue, "Blue Team scored!!");
 		CurrentLocation = SpawnLocation;
-		SetActorLocation(SpawnLocation);
 		XDirection = true;
 		YDirection = true;
+		blueScore += 1;
+		SetActorLocation(SpawnLocation);
 	}
-	
+	AMyPlayerController* MyPC = Cast<AMyPlayerController>(GetWorld()->GetFirstPlayerController());
+	FText BlueText = FText::FromString(FString::FromInt(blueScore));
+	FText RedText = FText::FromString(FString::FromInt(redScore));
+	MyPC->MyHud->BlueScore->SetText(BlueText);
+	MyPC->MyHud->RedScore->SetText(RedText);
 }
 
