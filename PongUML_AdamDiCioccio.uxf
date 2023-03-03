@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <help_text/>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>470</y>
+      <w>490</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>ABall
+&lt;&lt;AActor&gt;&gt;
+--
+UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "My Actor")
++ StaticMeshRoot : USceneComponent*
+
+UPROPERTY(EditAnywhere, Category = "My Actor")
++ StaticMeshComponent : UStaticMeshComponent*
+
+UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "My Actor")
++ CollisionSphere : USphereComponent*
+
+UPROPERTY(VisibleAnywhere, Category = "My Actor")
++ Speed : float = 10.0
+
+- SpawnLocation : FVector
+- CurrentLocation : FVector
+- XDirection : bool
+- YDirection : bool
+- blueScore : int32 = 0
+- redScore : int32 = 0
+--
++ ABall()
+
+# &lt;virtual override&gt; BeginPlay() void
+
+UFUNCTION()
+# OnActorOverlapBegin(Overlapped:AActor,Other:AActor) void
+
++ &lt;virtual override&gt; Tick(DeltaTime:float) void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>140</y>
+      <w>350</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>AMyPlayerController
+&lt;&lt;APlayerController&gt;&gt;
+--
+UPROPERTY(EditAnywhere, Category = HUD)
++ WBP_PongHUD : TSubclassOf&lt;class UPongHUD&gt;
+
++ MyHud : UPongHUD*
+--
+# &lt;virtual override&gt; BeginPlay() void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>890</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>PongGame</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>880</y>
+      <w>200</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>PongGameGameModeBase
+&lt;&lt;AGameModeBase&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>300</y>
+      <w>370</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>UPongHUD
+&lt;&lt;UUserWidget&gt;&gt;
+--
+UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
++ BlueScore : UTextBlock* = nullptr
+
+UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
++ RedScore : UTextBlock* = nullptr
+--
++ &lt;override&gt; NativeConstruct() void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>470</y>
+      <w>490</w>
+      <h>380</h>
+    </coordinates>
+    <panel_attributes>APlayerAI
+&lt;&lt;APawn&gt;&gt;
+--
+UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "My Pawn")
++ StaticMeshRoot : USceneComponent*
+
+UPROPERTY(EditAnywhere, Category = "My Pawn")
++ StaticMeshComponent : UStaticMeshComponent*
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Pawn")
++ CollisionBox : UBoxComponent*
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Actor")
++ Ball : ABall*
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Actor")
++ Speed : float = 2.0
+
+--
++ APlayerAI()
+
++ &lt;virtual override&gt; BeginPlay() void
+
++ &lt;virtual override&gt; Tick(DeltaTime:float) void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>10</y>
+      <w>620</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>APlayerPawn
+&lt;&lt;APawn&gt;&gt;
+--
+UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "My Pawn")
++ StaticMeshRoot : USceneComponent*
+
+UPROPERTY(EditAnywhere, Category = "My Pawn")
++ StaticMeshComponent : UStaticMeshComponent*
+
+UPROPERTY(EditAnywhere, Category = "My Pawn")
++ CameraComponent : UCameraComponent*
+
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "My Pawn")
++ CollisionBox : UBoxComponent*
+
++ FloatingPawnMovement : UFloatingPawnMovement*
+
+- MoveUpAmount : float = 0
+--
++ APlayerPawn()
+
++ &lt;virtual override&gt; BeginPlay() void
+
++ &lt;virtual override&gt; Tick(DeltaTime:float) void
+
++ &lt;virtual override&gt; SetupPlayerInputComponent(PlayerInputComponent:UInputComponent*) void
+
+- &lt;virtual&gt; MoveUp(Amount:float) void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>740</x>
+      <y>30</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Pong Game UML Diagram
+--
+
+Created By Adam Di Cioccio
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
